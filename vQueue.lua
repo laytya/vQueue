@@ -329,9 +329,9 @@ function vQueue_OnEvent(event)
 			BZ["The Temple of Atal'Hakkar"]..":st",
 			BZ["Blackrock Depths"]..":brd",
 			BZ["Lower Blackrock Spire"]..":lbrs",
-			"Dire Maul East"..":deme",
-			"Dire Maul West"..":demw",
-			"Dire Maul North"..":demn",
+			BZ["Dire Maul (East)"]..":deme",
+			BZ["Dire Maul (West)"]..":demw",
+			BZ["Dire Maul (North)"]..":demn",
 			BZ["Stratholme"]..":strat",
 			BZ["Scholomance"]..":scholo"
 		}
