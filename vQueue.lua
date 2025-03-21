@@ -1695,6 +1695,9 @@ function vQueue_OnEvent(event)
 		if vQ_IsInArray(vQueueDB.bannedLeaders,arg2) then
 			return
 		end
+		if string.lower(arg9) == "lft" then --Turtle LFT workaround
+			return
+		end
 		if string.lower(arg9) ~= string.lower(channelName) then --this string is scanning chats in realtime
 			local puncString = filterPunctuation(arg1)
 			for kLfm, vLfm in pairs(getglobal("LFMARGS")) do
