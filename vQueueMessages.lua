@@ -344,15 +344,20 @@ CATARGS["scholo"] = {
 }
 CATARGS["grove"] = {
 	"grove",
+	"crescent",
 	"crescent grove"
 }
 CATARGS["dmr"] = {
 	"dmr",
+	"dragonmaw",
+	"retreat",
 	"dragonmaw retreat"
 }
 CATARGS["stormwrought"] = {
 	"stormwrought",
-	"stormwrought ruins"
+	"stormwrought ruins",
+	"castle",
+	"descent"
 }
 CATARGS["hfq"] = {
 	"hfq",
@@ -366,18 +371,22 @@ CATARGS["gilneas"] = {
 }
 CATARGS["swvault"] = {
 	"swvault",
+	"vault",
 	"stormwind vault",
 	"sw vault"
 }
 CATARGS["bm"] = {
 	"bm",
+	"morass",
 	"black morass",
 	"cot",
+	"cavern",
 	"caverns of time"
 }
 CATARGS["crypt"] = {
 	"crypt",
-	"karazhan crypt"
+	"karazhan crypt",
+	"kara crypt"
 }
 CATARGS["ubrs"] = {
 	"upper",
@@ -427,6 +436,8 @@ CATARGS["naxx"] = {
 }
 CATARGS["kara10"] = {
 	"kara10",
+	"kara",
+	"karazhan",
 	"lower karazhan",
 	"lower kara"
 }
@@ -438,6 +449,8 @@ CATARGS["ukh"] = {
 }
 CATARGS["es"] = {
 	"es",
+	"emerald",
+	"sanctum",
 	"emerald sanctum",
 	"esnormal",
 	"eshardcore"

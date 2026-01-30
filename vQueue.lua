@@ -1460,13 +1460,13 @@ function vQueue_OnEvent(event)
 				vQueueFrame.hostlistUnlistButton:Show()
 				vQueueFrame.hostlistWaitListButton:Show()
 				vQueueFrame.hostTitle:Show()
-				vQueueFrame.hostTitleRole:Show()
-				vQueueFrame.hostTitleClass:Show()
-				vQueueFrame.hostTitleLevel:Show()
-				vQueueFrame.topsectionHostName:Show()
-				vQueueFrame.hostlistBotShadow:SetHeight(40)
-				if tablelength(groups[selectedQuery]) > 16 then vQueueFrame.hostlistBotShadow:Show() else vQueueFrame.hostlistBotShadow:Hide() end
-				if vQueueDB.isHost then return end
+			vQueueFrame.hostTitleRole:Show()
+			vQueueFrame.hostTitleClass:Show()
+			vQueueFrame.hostTitleLevel:Show()
+			vQueueFrame.topsectionHostName:Show()
+			vQueueFrame.hostlistBotShadow:SetHeight(40)
+			if groups[selectedQuery] and tablelength(groups[selectedQuery]) > 16 then vQueueFrame.hostlistBotShadow:Show() else vQueueFrame.hostlistBotShadow:Hide() end
+			if vQueueDB.isHost then return end
 				vQueue_SlashCommandHandler( "host " .. selectedQuery )
 			end
 		end)
@@ -2030,8 +2030,10 @@ function vQueue_createCategories(textKey)
 				else
 					vQueueFrame.hostlistHostButton:Hide()
 				end
-				scrollbar:SetValue(1)
+			scrollbar:SetValue(1)
+			if groups[selectedQuery] then
 				scrollbar:SetMinMaxValues(1, tablelength(groups[selectedQuery])-10)
+			end
 			end)
 			dropedItemFrame:SetScript("OnShow", function()
 				if vQueueFrame.catListHighlight:GetParent() and trim(split(vQueueFrame.catListHighlight:GetParent():GetText(), "%[")[1]) == trim(split(this:GetText(), "%[")[1]) then
@@ -2116,13 +2118,15 @@ function vQueue_addToWaitList(playerinfo)
 		newWaitEntryInvite:SetFont("Interface\\AddOns\\vQueue\\media\\ARIALN.TTF", 10)
 		newWaitEntryInvite:SetText(L["invite"])
 		newWaitEntryInvite:SetWidth(newWaitEntryInvite:GetTextWidth()+5)
-		newWaitEntryInvite:SetScript("OnClick", function()
-			InviteByName(this:GetParent():GetText())
-			groups["waitlist"][this:GetParent():GetText()]:Hide()
-			groups["waitlist"][this:GetParent():GetText()] = nil
-			vQueue_UpdateHostScroll(scrollbar:GetValue())
+	newWaitEntryInvite:SetScript("OnClick", function()
+		InviteByName(this:GetParent():GetText())
+		groups["waitlist"][this:GetParent():GetText()]:Hide()
+		groups["waitlist"][this:GetParent():GetText()] = nil
+		vQueue_UpdateHostScroll(scrollbar:GetValue())
+		if groups[selectedQuery] then
 			scrollbar:SetMinMaxValues(1, tablelength(groups[selectedQuery])-10)
-			if playerMessages[this:GetParent():GetText()] == nil then return end
+		end
+		if playerMessages[this:GetParent():GetText()] == nil then return end
 			local invargs = split(playerMessages[this:GetParent():GetText()], "\:")
 			if Wholefind(invargs[1], "vqrequest") > 0 then
 				if not setContains(chatQueue, "vqaccept" .. "-WHISPER-" .. this:GetParent():GetText()) then
@@ -2153,12 +2157,14 @@ function vQueue_addToWaitList(playerinfo)
 		newWaitEntryDecline:SetPoint("RIGHT", newWaitEntryBg, "RIGHT", -3, 0)
 		newWaitEntryDecline:SetText("X")
 		newWaitEntryDecline:SetWidth(newWaitEntryDecline:GetTextWidth()+5)
-		newWaitEntryDecline:SetScript("OnClick", function()
-			groups["waitlist"][this:GetParent():GetText()]:Hide()
-			groups["waitlist"][this:GetParent():GetText()] = nil
-			vQueue_UpdateHostScroll(scrollbar:GetValue())
+	newWaitEntryDecline:SetScript("OnClick", function()
+		groups["waitlist"][this:GetParent():GetText()]:Hide()
+		groups["waitlist"][this:GetParent():GetText()] = nil
+		vQueue_UpdateHostScroll(scrollbar:GetValue())
+		if groups[selectedQuery] then
 			scrollbar:SetMinMaxValues(1, tablelength(groups[selectedQuery])-10)
-			if playerMessages[this:GetParent():GetText()] == nil then return end
+		end
+		if playerMessages[this:GetParent():GetText()] == nil then return end
 			local invargs = split(playerMessages[this:GetParent():GetText()], "\:")
 			if Wholefind(invargs[1], "vqrequest") > 0 then
 				if not setContains(chatQueue, "vqdecline" .. "-WHISPER-" .. this:GetParent():GetText()) then
@@ -2172,7 +2178,9 @@ function vQueue_addToWaitList(playerinfo)
 	if selectedQuery == "waitlist" and vQueueDB.isWaitListShown then 
 		groups["waitlist"][args[1]]:Show()
 		vQueue_UpdateHostScroll(scrollbar:GetValue())
-		scrollbar:SetMinMaxValues(1, tablelength(groups[selectedQuery])-10)
+		if groups[selectedQuery] then
+			scrollbar:SetMinMaxValues(1, tablelength(groups[selectedQuery])-10)
+		end
 	else groups["waitlist"][args[1]]:Hide() end
 end
 
@@ -2237,14 +2245,14 @@ function vQueue_UpdateCatScroll(value)
 end
 
 function vQueue_UpdateHostScroll(value)
-	if selectedQuery ~= "" then
+	if selectedQuery ~= "" and groups[selectedQuery] then
 		for k, v in pairs(groups[selectedQuery]) do
 			local index = AnIndexOf(groups[selectedQuery], k)
 			if (index+1) < value or index-value > 16 then v:Hide() else v:Show() end
 		end
 		if tablelength(groups[selectedQuery]) > 16 then vQueueFrame.hostlistBotShadow:Show() else vQueueFrame.hostlistBotShadow:Hide() end
 	end
-	if selectedQuery ~= "" then
+	if selectedQuery ~= "" and groups[selectedQuery] then
 		for k, v in pairs(groups[selectedQuery]) do
 			if v ~= nil then
 				if v:IsShown() then
@@ -2308,6 +2316,12 @@ end
 function vQueue_addToGroup(category, groupinfo)
 	if category == "waitlist" then return end
 	local args = split(groupinfo, "\:")
+	
+	-- Create groups table for category if it doesn't exist
+	if groups[category] == nil then
+		groups[category] = {}
+	end
+	
 	for k, v in pairs(groups) do
 		for kk, vv in pairs(groups[k]) do
 			if kk == args[2] and vv ~= nil and k ~= category and k ~= "waitlist" then
@@ -2490,15 +2504,21 @@ function vQueue_addToGroup(category, groupinfo)
 	if category == selectedQuery and not vQueueDB.isWaitListShown then 
 		groups[category][args[2]]:Show()
 		vQueue_UpdateHostScroll(scrollbar:GetValue())
-		scrollbar:SetMinMaxValues(1, tablelength(groups[selectedQuery])-10)
+		if groups[selectedQuery] then
+			scrollbar:SetMinMaxValues(1, tablelength(groups[selectedQuery])-10)
+		end
 	else groups[category][args[2]]:Hide() end
 end
 
 function vQueue_ShowGroups(category, prevCategory)
-	if prevCategory ~= "" then
+	if prevCategory ~= "" and groups[prevCategory] then
 		for k, v in pairs(groups[prevCategory]) do v:Hide() end
 	end
 	if category ~= "" then
+		-- Create groups table for category if it doesn't exist
+		if groups[category] == nil then
+			groups[category] = {}
+		end
 		for k, v in pairs(groups[category]) do v:Hide() end
 		for k, v in pairs(groups[category]) do
 			v:Show() 
