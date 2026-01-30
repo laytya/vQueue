@@ -342,6 +342,43 @@ CATARGS["scholo"] = {
 	"scholo",
 	"schol"
 }
+CATARGS["grove"] = {
+	"grove",
+	"crescent grove"
+}
+CATARGS["dmr"] = {
+	"dmr",
+	"dragonmaw retreat"
+}
+CATARGS["stormwrought"] = {
+	"stormwrought",
+	"stormwrought ruins"
+}
+CATARGS["hfq"] = {
+	"hfq",
+	"hateforge",
+	"quarry",
+	"hateforge quarry"
+}
+CATARGS["gilneas"] = {
+	"gilneas",
+	"gilneas city"
+}
+CATARGS["swvault"] = {
+	"swvault",
+	"stormwind vault",
+	"sw vault"
+}
+CATARGS["bm"] = {
+	"bm",
+	"black morass",
+	"cot",
+	"caverns of time"
+}
+CATARGS["crypt"] = {
+	"crypt",
+	"karazhan crypt"
+}
 CATARGS["ubrs"] = {
 	"upper",
 	"黑上",
@@ -387,6 +424,23 @@ CATARGS["naxx"] = {
 	"naxx",
 	"naxxramas",
 	"nax"
+}
+CATARGS["kara10"] = {
+	"kara10",
+	"lower karazhan",
+	"lower kara"
+}
+CATARGS["ukh"] = {
+	"ukh",
+	"kara40",
+	"upper karazhan",
+	"upper kara"
+}
+CATARGS["es"] = {
+	"es",
+	"emerald sanctum",
+	"esnormal",
+	"eshardcore"
 }
 CATARGS["wsg"] = {
 	"wsg",
@@ -488,8 +542,11 @@ MINLVLS["zg"] = 60
 MINLVLS["mc"] = 60
 MINLVLS["ruins"] = 60
 MINLVLS["bwl"] = 60
+MINLVLS["kara10"] = 60
 MINLVLS["temple"] = 60
+MINLVLS["es"] = 60
 MINLVLS["naxx"] = 60
+MINLVLS["ukh"] = 60
 
 -- dungeons --
 MINLVLS["rfc"] = 13
@@ -500,17 +557,25 @@ MINLVLS["stock"] = 24
 MINLVLS["bfd"] = 24
 MINLVLS["gnomer"] = 29
 MINLVLS["rfk"] = 29
+MINLVLS["grove"] = 32
 MINLVLS["graveyard"] = 34
 MINLVLS["library"] = 35
 MINLVLS["armory"] = 36
 MINLVLS["cathedral"] = 39
 MINLVLS["rfd"] = 37
+MINLVLS["dmr"] = 38
+MINLVLS["stormwrought"] = 40
 MINLVLS["ulda"] = 41
 MINLVLS["zf"] = 44
 MINLVLS["mara"] = 46
+MINLVLS["gilneas"] = 48
 MINLVLS["st"] = 50
+MINLVLS["hfq"] = 50
 MINLVLS["brd"] = 52
 MINLVLS["lbrs"] = 55
+MINLVLS["swvault"] = 57
+MINLVLS["bm"] = 58
+MINLVLS["crypt"] = 58
 MINLVLS["dem"] = 56
 MINLVLS["deme"] = 56
 MINLVLS["demw"] = 56
