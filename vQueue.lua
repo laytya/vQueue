@@ -287,18 +287,21 @@ function vQueue_OnEvent(event)
 			expanded = false,
 			L["Misc"]..":misc"
 		}
-		categories[L["Raids"]] =
-		{
-			expanded = false,
-			BZ["Upper Blackrock Spire"]..":ubrs",
-			BZ["Onyxia's Lair"]..":ony",
-			BZ["Zul'Gurub"]..":zg",
-			BZ["Molten Core"]..":mc",
-			BZ["Ruins of Ahn'Qiraj"]..":ruins",
-			BZ["Blackwing Lair"]..":bwl",
-			BZ["Temple of Ahn'Qiraj"]..":temple",
-			BZ["Naxxramas"]..":naxx"
-		}
+	categories[L["Raids"]] =
+	{
+		expanded = false,
+		BZ["Upper Blackrock Spire"]..":ubrs",
+		BZ["Onyxia's Lair"]..":ony",
+		BZ["Zul'Gurub"]..":zg",
+		BZ["Molten Core"]..":mc",
+		BZ["Ruins of Ahn'Qiraj"]..":ruins",
+		BZ["Blackwing Lair"]..":bwl",
+		"Lower Karazhan Halls:kara10",
+		BZ["Temple of Ahn'Qiraj"]..":temple",
+		"Emerald Sanctum:es",
+		BZ["Naxxramas"]..":naxx",
+		"Upper Karazhan Halls:ukh"
+	}
 		categories[L["Battlegrounds"]] =
 		{
 			expanded = false,
@@ -307,34 +310,42 @@ function vQueue_OnEvent(event)
 			BZ["Alterac Valley"]..":av"
 		
 		}
-		categories[L["Dungeons"]] = 
-		{
-			expanded = false,
-			BZ["Ragefire Chasm"]..":rfc",
-			BZ["The Deadmines"]..":dead",
-			BZ["Wailing Caverns"]..":wc",
-			BZ["Shadowfang Keep"]..":sfk",
-			BZ["The Stockade"]..":stock",
-			BZ["Blackfathom Deeps"]..":bfd",
-			BZ["Gnomeregan"]..":gnomer",
-			BZ["Razorfen Kraul"]..":rfk",
-			L["The Graveyard"]..":graveyard",
-			L["The Library"]..":library",
-			L["The Armory"]..":armory",
-			L["The Cathedral"]..":cathedral",
-			BZ["Razorfen Downs"]..":rfd",
-			BZ["Uldaman"]..":ulda",
-			BZ["Zul'Farrak"]..":zf",
-			BZ["Maraudon"]..":mara",
-			BZ["The Temple of Atal'Hakkar"]..":st",
-			BZ["Blackrock Depths"]..":brd",
-			BZ["Lower Blackrock Spire"]..":lbrs",
-			"Dire Maul East"..":deme",
-			"Dire Maul West"..":demw",
-			"Dire Maul North"..":demn",
-			BZ["Stratholme"]..":strat",
-			BZ["Scholomance"]..":scholo"
-		}
+	categories[L["Dungeons"]] = 
+	{
+		expanded = false,
+		BZ["Ragefire Chasm"]..":rfc",
+		BZ["The Deadmines"]..":dead",
+		BZ["Wailing Caverns"]..":wc",
+		BZ["Shadowfang Keep"]..":sfk",
+		BZ["The Stockade"]..":stock",
+		BZ["Blackfathom Deeps"]..":bfd",
+		BZ["Gnomeregan"]..":gnomer",
+		BZ["Razorfen Kraul"]..":rfk",
+		"The Crescent Grove:grove",
+		L["The Graveyard"]..":graveyard",
+		L["The Library"]..":library",
+		L["The Armory"]..":armory",
+		L["The Cathedral"]..":cathedral",
+		BZ["Razorfen Downs"]..":rfd",
+		"Dragonmaw Retreat:dmr",
+		"Stormwrought Ruins:stormwrought",
+		BZ["Uldaman"]..":ulda",
+		BZ["Zul'Farrak"]..":zf",
+		BZ["Maraudon"]..":mara",
+		BZ["The Temple of Atal'Hakkar"]..":st",
+		"Hateforge Quarry:hfq",
+		"Gilneas City:gilneas",
+		BZ["Blackrock Depths"]..":brd",
+		BZ["Lower Blackrock Spire"]..":lbrs",
+		"Stormwind Vault:swvault",
+		"Caverns of Time: Black Morass:bm",
+		"Karazhan Crypt:crypt",
+		"Dire Maul East"..":deme",
+		"Dire Maul West"..":demw",
+		"Dire Maul North"..":demn",
+		BZ["Stratholme"]..":strat",
+		BZ["Scholomance"]..":scholo"
+	}
 		categories[L["Quest Groups"]] =
 		{
 			expanded = false,
